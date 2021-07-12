@@ -234,3 +234,9 @@ df_stream_in.writeStream \
 
 # MAGIC %sql
 # MAGIC select * from test_ext_table_1
+
+# COMMAND ----------
+
+# stop all streams
+for stream in spark.streams.active:
+    stream.stop()
