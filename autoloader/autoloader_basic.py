@@ -2,11 +2,10 @@
 # MAGIC %md
 # MAGIC <img src="https://databricks.com/wp-content/themes/databricks/assets/images/header_logo_2x.png" alt="logo" width="150"/> 
 # MAGIC 
-# MAGIC Contact: hao.wang@databricks.com
-# MAGIC 
 # MAGIC This tutorial shows how to use Databricks autoloader to ingest streaming data into delta tables, contains following topics:
 # MAGIC 1. Connect to ADLS.
 # MAGIC 2. Use autoloader to ingest and transform data on the fly, using pyspark / sql.
+# MAGIC 3. Use autoloader to update delta table (3.1 for managed delta table; 3.2 for external delta table)
 # MAGIC 
 # MAGIC https://docs.microsoft.com/en-us/azure/databricks/spark/latest/structured-streaming/auto-loader
 
@@ -35,7 +34,7 @@ spark.conf.set(
 
 # COMMAND ----------
 
-# DBTITLE 1,Method 1: Directly transform streaming df and write to delta, for simple transformations
+# DBTITLE 1,Scenario 1: Directly transform streaming df and write to delta, for simple transformations
 from pyspark.sql.types import *
 from delta.tables import *
 import pyspark.sql.functions as F
@@ -70,7 +69,7 @@ loaded_df.show()
 
 # COMMAND ----------
 
-# DBTITLE 1,Method 2: Using foreachbatch and function to process each microbatch df and update delta files
+# DBTITLE 1,Scenario 2: Using foreachbatch and function to process each microbatch df and update delta files
 from pyspark.sql.types import *
 from delta.tables import *
 import pyspark.sql.functions as F
@@ -122,14 +121,7 @@ sink_df_2 = spark.read.format("delta").load(sink_container_path_2)
 
 # COMMAND ----------
 
-# MAGIC %md ## Create managed delta table in dbfs
-# MAGIC 
-# MAGIC If we are to create external delta table in ADLS, we need to mount storage onto ADLS first.
-# MAGIC Here we show how to directly create managed internal table.
-
-# COMMAND ----------
-
-# DBTITLE 1,Method 3: Foreachbatch and merge microbatch df into to delta table to update records
+# DBTITLE 1,Scenario 3.1: Update records using foreachbatch and merge microbatch, using managed delta table (data in dbfs)
 from pyspark import Row
 
 source_container_path = "abfss://autoloadersource@hwangstorage1.dfs.core.windows.net/"
@@ -150,7 +142,7 @@ def upsertToDelta(microBatchOutputDF, batchId):
     WHEN NOT MATCHED THEN INSERT *
   """)
 
-# create empty delta table
+# first to create empty delta table
 schema_json = 'Country STRING, Language STRING, TweetDataVolume STRING'
 df = sqlContext.createDataFrame(sc.emptyRDD(), schema_json)
 df.write \
@@ -207,6 +199,7 @@ except Exception as e:
 
 # COMMAND ----------
 
+# DBTITLE 1,Scenario 3.2: Update records using foreachbatch and merge microbatch, using external delta table (data in your blob)
 source_container_path = "abfss://autoloadersource@hwangstorage1.dfs.core.windows.net/"
 schema_json = 'Country STRING, Language STRING, TweetDataVolume STRING'
 
@@ -241,14 +234,3 @@ df_stream_in.writeStream \
 
 # MAGIC %sql
 # MAGIC select * from test_ext_table_1
-
-# COMMAND ----------
-
-# MAGIC %md ## Conclusion
-# MAGIC Suggestion: Mount ADLS as your external delta table location.
-# MAGIC Use the template above to update your delta table.
-# MAGIC You can write output to multiple delta tables, as shown in method 2 of writing output to multiple locations.
-
-# COMMAND ----------
-
-
