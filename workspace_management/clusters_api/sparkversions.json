@@ -1,0 +1,128 @@
+{
+  "versions": [
+    {
+      "key": "6.4.x-esr-scala2.11",
+      "name": "6.4 Extended Support (includes Apache Spark 2.4.5, Scala 2.11)"
+    },
+    {
+      "key": "7.3.x-cpu-ml-scala2.12",
+      "name": "7.3 LTS ML (includes Apache Spark 3.0.1, Scala 2.12)"
+    },
+    {
+      "key": "7.3.x-hls-scala2.12",
+      "name": "7.3 LTS Genomics (includes Apache Spark 3.0.1, Scala 2.12)"
+    },
+    {
+      "key": "10.2.x-gpu-ml-scala2.12",
+      "name": "10.2 ML (includes Apache Spark 3.2.0, GPU, Scala 2.12)"
+    },
+    {
+      "key": "7.3.x-gpu-ml-scala2.12",
+      "name": "7.3 LTS ML (includes Apache Spark 3.0.1, GPU, Scala 2.12)"
+    },
+    {
+      "key": "10.1.x-photon-scala2.12",
+      "name": "10.1 Photon (includes Apache Spark 3.2.0, Scala 2.12)"
+    },
+    {
+      "key": "9.1.x-photon-scala2.12",
+      "name": "9.1 LTS Photon (includes Apache Spark 3.1.2, Scala 2.12)"
+    },
+    {
+      "key": "10.2.x-photon-scala2.12",
+      "name": "10.2 Photon (includes Apache Spark 3.2.0, Scala 2.12)"
+    },
+    {
+      "key": "10.3.x-photon-scala2.12",
+      "name": "10.3 Photon (includes Apache Spark 3.2.1, Scala 2.12)"
+    },
+    {
+      "key": "9.0.x-photon-scala2.12",
+      "name": "9.0 Photon (includes Apache Spark 3.1.2, Scala 2.12)"
+    },
+    {
+      "key": "10.1.x-gpu-ml-scala2.12",
+      "name": "10.1 ML (includes Apache Spark 3.2.0, GPU, Scala 2.12)"
+    },
+    {
+      "key": "9.1.x-scala2.12",
+      "name": "9.1 LTS (includes Apache Spark 3.1.2, Scala 2.12)"
+    },
+    {
+      "key": "10.0.x-cpu-ml-scala2.12",
+      "name": "10.0 ML (includes Apache Spark 3.2.0, Scala 2.12)"
+    },
+    {
+      "key": "10.3.x-cpu-ml-scala2.12",
+      "name": "10.3 ML (includes Apache Spark 3.2.1, Scala 2.12)"
+    },
+    {
+      "key": "9.0.x-gpu-ml-scala2.12",
+      "name": "9.0 ML (includes Apache Spark 3.1.2, GPU, Scala 2.12)"
+    },
+    {
+      "key": "9.0.x-scala2.12",
+      "name": "9.0 (includes Apache Spark 3.1.2, Scala 2.12)"
+    },
+    {
+      "key": "10.1.x-cpu-ml-scala2.12",
+      "name": "10.1 ML (includes Apache Spark 3.2.0, Scala 2.12)"
+    },
+    {
+      "key": "10.0.x-scala2.12",
+      "name": "10.0 (includes Apache Spark 3.2.0, Scala 2.12)"
+    },
+    {
+      "key": "apache-spark-2.4.x-esr-scala2.11",
+      "name": "Light 2.4 Extended Support (includes Apache Spark 2.4, Scala 2.11)"
+    },
+    {
+      "key": "10.1.x-scala2.12",
+      "name": "10.1 (includes Apache Spark 3.2.0, Scala 2.12)"
+    },
+    {
+      "key": "9.1.x-cpu-ml-scala2.12",
+      "name": "9.1 LTS ML (includes Apache Spark 3.1.2, Scala 2.12)"
+    },
+    {
+      "key": "10.2.x-scala2.12",
+      "name": "10.2 (includes Apache Spark 3.2.0, Scala 2.12)"
+    },
+    {
+      "key": "10.2.x-cpu-ml-scala2.12",
+      "name": "10.2 ML (includes Apache Spark 3.2.0, Scala 2.12)"
+    },
+    {
+      "key": "10.0.x-photon-scala2.12",
+      "name": "10.0 Photon (includes Apache Spark 3.2.0, Scala 2.12)"
+    },
+    {
+      "key": "10.0.x-gpu-ml-scala2.12",
+      "name": "10.0 ML (includes Apache Spark 3.2.0, GPU, Scala 2.12)"
+    },
+    {
+      "key": "9.1.x-gpu-ml-scala2.12",
+      "name": "9.1 LTS ML (includes Apache Spark 3.1.2, GPU, Scala 2.12)"
+    },
+    {
+      "key": "apache-spark-2.4.x-scala2.11",
+      "name": "Light 2.4 (includes Apache Spark 2.4, Scala 2.11)"
+    },
+    {
+      "key": "7.3.x-scala2.12",
+      "name": "7.3 LTS (includes Apache Spark 3.0.1, Scala 2.12)"
+    },
+    {
+      "key": "10.3.x-scala2.12",
+      "name": "10.3 (includes Apache Spark 3.2.1, Scala 2.12)"
+    },
+    {
+      "key": "9.0.x-cpu-ml-scala2.12",
+      "name": "9.0 ML (includes Apache Spark 3.1.2, Scala 2.12)"
+    },
+    {
+      "key": "10.3.x-gpu-ml-scala2.12",
+      "name": "10.3 ML (includes Apache Spark 3.2.1, GPU, Scala 2.12)"
+    }
+  ]
+}
