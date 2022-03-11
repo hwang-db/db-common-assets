@@ -1,0 +1,65 @@
+# Grab variables from the specific variable group and
+# determine sourceBranchName (avoids SourchBranchName=merge
+# for PR)
+# issue 1 work
+variables:
+  - group: 'mlops-group'
+  - name: 'branchName'
+    ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/') }}:
+      value: $[ replace(variables['Build.SourceBranch'], 'refs/heads/', '') ]
+    ${{ if startsWith(variables['Build.SourceBranch'], 'refs/pull/') }}:
+      value: $[ replace(variables['System.PullRequest.SourceBranch'], 'refs/heads/', '') ]
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - '*'
+  paths:
+    exclude:
+      - README.md
+      - images
+      - terraform
+
+stages:
+- stage: onPush
+  condition: |
+    and(
+      ne(variables['Build.SourceBranch'], 'refs/heads/releases'),
+      not(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
+    )
+  jobs:
+  - job: onPushJob
+    pool:
+      vmImage: 'ubuntu-18.04'
+
+    steps:
+    - script: env | sort
+      displayName: 'Environment / Context'
+
+    - task: UsePythonVersion@0
+      displayName: 'Use Python 3.7'
+      inputs:
+        versionSpec: 3.7
+
+    - checkout: self
+      persistCredentials: true
+      clean: true
+      displayName: 'Checkout & Build.Reason: $(Build.Reason) & Build.SourceBranchName: $(Build.SourceBranchName)'
+
+    - script: |
+        python -m pip install --upgrade pip nutter
+        # this is because of the old dependency inside Nutter
+        python -m pip install --upgrade databricks-cli
+      displayName: 'Install dependencies'
+# https://docs.databricks.com/dev-tools/api/latest/repos.html
+# this is simplification, and won't work with concurrent commits. Ideally it should be a
+# separate repo for each commit
+    - script: |
+        echo "Checking out the $(branchName) branch"
+        databricks repos update --path $(STAGING_DIRECTORY) --branch "$(branchName)"
+        databricks repos update --path $(PRODUCTION_DIRECTORY) --branch "$(branchName)"
+      env:
+        DATABRICKS_HOST: $(DATABRICKS_HOST)
+        DATABRICKS_TOKEN: $(DATABRICKS_TOKEN)
+      displayName: 'Update Staging project'
