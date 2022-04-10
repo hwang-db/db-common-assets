@@ -18,6 +18,8 @@
 # MAGIC * Tested on `DBR 10.4 LTS`.
 # MAGIC * Generate a fernet key and store it in AKV Secrets, create AKV backed secret scope on Databricks.
 # MAGIC * Generate eventhub connection string and store it in AKV Secrets
+# MAGIC 
+# MAGIC Click RunAll, this demo is idempotent.
 
 # COMMAND ----------
 
