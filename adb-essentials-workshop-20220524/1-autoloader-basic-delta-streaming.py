@@ -20,8 +20,8 @@
 
 # this requires setup on secrets scope and key vault instance
 spark.conf.set(
-    "fs.azure.account.key.teststoragehwang2.dfs.core.windows.net",
-    "adls-key")
+    "fs.azure.account.key.teststoragehwang2.dfs.core.windows.net", 
+    "your_adls_key")
 
 # COMMAND ----------
 
@@ -201,3 +201,7 @@ df_stream_in.writeStream \
 for s in spark.streams.active:
     print(s)
     s.stop()
+
+# COMMAND ----------
+
+

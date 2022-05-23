@@ -179,3 +179,7 @@ client.transition_model_version_stage(
     name=model_name,
     version=version,
     stage="staging")
+
+# COMMAND ----------
+
+
